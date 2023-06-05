@@ -1,25 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Navbar from "./components/Navbar";
+import Homepage from "./components/HomePage";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useState } from "react";
+import SignUp from "./components/Auth/SignUp";
+import SignIn from "./components/Auth/SignIn";
+import PasswordManager from "./components/PasswordManager";
 
 function App() {
+  const [isSignedIn, setIsSignedIn] = useState(true);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+    <Navbar isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn} />
+
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/passwordManager" element={<PasswordManager />} />
+        </Routes>
+      </Router>
+
   );
 }
 
