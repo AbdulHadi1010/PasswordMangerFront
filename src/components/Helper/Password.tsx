@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
 import { HiOutlineClipboardCopy } from "react-icons/hi";
+import { success } from "./Toast";
+import { BASE_URL } from "./BaseUrl";
 
 const Password = ({ val }) => {
   const [decrypted, setDecrypted] = useState(false);
@@ -10,11 +12,12 @@ const Password = ({ val }) => {
   const decryptPassword = async (encryption) => {
     try {
       const res = await axios.post(
-        "http://localhost:3001/Passwords/decryptPassword",
+        `${BASE_URL}/Passwords/decryptPassword`,
         {
           password: encryption.password,
           iv: encryption.iv,
         }
+        
       );
       setPassword(res.data);
       setDecrypted(true);
@@ -22,6 +25,11 @@ const Password = ({ val }) => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const copyPassword = () => {
+    navigator.clipboard.writeText(password);
+    success("Password copied to clipboard.");
   };
 
   return (
@@ -41,7 +49,7 @@ const Password = ({ val }) => {
         ) : (
           <div className="flex items-center justify-center">
             <p className="text-white px-4 py-2 text-lg">{password}</p>
-            <button onClick={() => navigator.clipboard.writeText(password)}>
+            <button onClick={copyPassword}>
               <HiOutlineClipboardCopy
                 color="white"
                 size={20}
