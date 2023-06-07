@@ -14,7 +14,6 @@ const MyPasswords = ({ setShowPasswords }) => {
             "userID"
           )}`
         );
-        console.log(res.data);
         setPasswordList(res.data);
       } catch (error) {
         console.log(error);
@@ -25,7 +24,7 @@ const MyPasswords = ({ setShowPasswords }) => {
   }, []);
 
   return (
-    <div className="max-w-sm mx-auto h-screen">
+    <div className="max-w-sm mx-auto min-h-screen">
       {passwordList.length === 0 && (
         <h2 className="text-4xl text-center">
           You have not saved any passwords yet.

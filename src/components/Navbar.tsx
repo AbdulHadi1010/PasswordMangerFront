@@ -25,31 +25,19 @@ const Navbar = ({ isSignedIn, setIsSignedIn }: any) => {
             <MdSecurity size={40} />
           </div>
           {/* Menu Items */}
-          <ul className="flex ml-10 gap-5 items-center space-x-4 text-xl font-semibold">
-            <li>
+          <div className="flex ml-10 gap-5 items-center space-x-4 text-xl font-semibold">
               <Link
                 to="/"
                 className="cursor-pointer text-white hover:text-gray-300"
               >
                 Home
               </Link>
-            </li>
-            <li>
-              <a
-                href="#features"
+            <Link
+                  to="/"
                 className="cursor-pointer text-white hover:text-gray-300"
-              >
+                >
                 Features
-              </a>
-            </li>
-            <li>
-              <a
-                href="#how-it-works"
-                className="cursor-pointer text-white hover:text-gray-300"
-              >
-                How It Works
-              </a>
-            </li>
+                </Link>
             {!cookies.access_token ? (
               <>
                 <Link
@@ -82,7 +70,7 @@ const Navbar = ({ isSignedIn, setIsSignedIn }: any) => {
                 </button>
               </>
             )}
-          </ul>
+          </div>
         </Row>
       </Wrapper>
     </nav>

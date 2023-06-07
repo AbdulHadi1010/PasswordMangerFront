@@ -1,25 +1,33 @@
 import { useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "../Helper/BaseUrl";
+import { error, success } from "../Helper/Toast";
+import { ToastContainer } from "react-toastify";
 
 const SignUp = () => {
   const [id, setId] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  // const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleSignUp = async (event: any) => {
     event.preventDefault();
+
+    if (id.trim() === "" || name.trim() === "" || password.trim() === "") {
+      error("One or more empty fields."); 
+      return;
+    }
+
     try {
       await axios.post(`${BASE_URL}/User/signup`, {
         name,
         id,
         password,
       });
-
-      alert("Registration Completed! Now login.");
+      success("Registration Completed! Now login.");
     } catch (error) {
       console.error(error);
+      error("Something went wrong.");
     }
   };
 
@@ -29,6 +37,7 @@ const SignUp = () => {
         <h2 className="text-4xl font-bold mb-12 text-green-400">Sign Up</h2>
         <div className="max-w-xs mx-auto">
           <input
+            required
             type="text"
             placeholder="Name"
             value={name}
@@ -36,6 +45,7 @@ const SignUp = () => {
             className="focus:outline-none text-slate-800 w-full mb-6 px-4 py-3 rounded"
           />
           <input
+            required
             type="text"
             placeholder="Email/Username"
             value={id}
@@ -43,6 +53,7 @@ const SignUp = () => {
             className="focus:outline-none text-slate-800 w-full mb-6 px-4 py-3 rounded"
           />
           <input
+            required
             type="password"
             placeholder="Password"
             value={password}
@@ -58,6 +69,7 @@ const SignUp = () => {
           </button>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };
