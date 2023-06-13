@@ -36,7 +36,7 @@ const Password = ({ val }) => {
     <div className="border my-4 px-4 py-2 rounded-lg bg-slate-800 ">
       <h3 className="text-xl font-bold">{val.title}</h3>
       <p className="text-white text-lg my-1.5">{val.id}</p>
-      <div className="mx-auto w-1/2 mt-3 bg-slate-900 hover:border hover:border-green-400 rounded-lg">
+      <div className="mx-auto w-1/2 mt-3 bg-slate-900 hover:scale-105 duration-200 rounded-lg">
         {hide ? (
           <button
             className="p-2 text-white cursor-pointer "

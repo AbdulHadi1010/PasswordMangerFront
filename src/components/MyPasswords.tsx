@@ -30,16 +30,20 @@ const MyPasswords = ({ setShowPasswords }) => {
           You have not saved any passwords yet.
         </h2>
       )}
+      {passwordList.length !== 0 && (
+        <h2 className="text-2xl font-bold mb-8">Your Passwords</h2>
+      )}
+      <button
+        onClick={() => setShowPasswords(false)}
+        className="bg-slate-700 hover:bg-slate-600 text-white my-2 px-6 py-3 rounded-lg w-full"
+      >
+        Add Passwords
+      </button>
+
       {passwordList.length !== 0 &&
         passwordList.map((val, index) => {
           return <Password val={val} key={index} />;
         })}
-      <button
-        onClick={() => setShowPasswords(false)}
-        className="bg-slate-700 hover:bg-slate-600 text-white my-8 px-6 py-3 rounded-lg w-full"
-      >
-        Add Passwords
-      </button>
     </div>
   );
 };
