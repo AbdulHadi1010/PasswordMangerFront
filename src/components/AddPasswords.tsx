@@ -9,7 +9,7 @@ const AddPasswords = ({
   setShowPasswords,
 }) => {
   return (
-    <>
+    <div className="h-screen">
       <h2 className="text-2xl font-bold mb-8">Add Passwords</h2>
       <div className="max-w-xs mx-auto">
         <form>
@@ -51,7 +51,7 @@ const AddPasswords = ({
           </button>
         </form>
       </div>
-    </>
+    </div>
   );
 };
 

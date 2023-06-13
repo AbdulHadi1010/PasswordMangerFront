@@ -17,22 +17,22 @@ const Navbar = ({ isSignedIn, setIsSignedIn }: any) => {
   };
 
   return (
-    <nav className="flex items-center bg-slate-800 justify-center py-4 w-full text-white">
+    <nav className="flex items-center bg-slate-800 justify-center text-lg sm:text-xl py-4 w-full text-white">
       <Wrapper>
         <Row>
           <div className="text-blue-400">
             <MdSecurity size={40} />
           </div>
-          <div className="flex ml-10 gap-5 items-center space-x-4 text-xl font-semibold">
+          <div className="flex ml-4 sm:ml-10 sm:gap-5 items-center space-x-4 font-semibold">
             <Link
               to="/"
-              className="cursor-pointer text-white hover:text-gray-300"
+              className=" cursor-pointer text-white hover:text-gray-300"
             >
               Home
             </Link>
             <Link
               to="/"
-              className="cursor-pointer text-white hover:text-gray-300"
+              className="hidden sm:block cursor-pointer text-white hover:text-gray-300"
             >
               Features
             </Link>
@@ -58,11 +58,11 @@ const Navbar = ({ isSignedIn, setIsSignedIn }: any) => {
                   to="/passwordManager"
                   className="cursor-pointer text-white hover:text-gray-300"
                 >
-                  My Passwords
+                  <span className="hidden sm:inline">My</span> Passwords
                 </Link>
                 <button
                   onClick={logout}
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg"
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg"
                 >
                   Logout
                 </button>
