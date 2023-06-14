@@ -33,7 +33,7 @@ const SignIn = () => {
       navigate("/passwordManager");
     } catch (error) {
       console.error(error);
-      error("Id or password is wrong.")
+      // error("Id or password is wrong.")
     }
   };
 

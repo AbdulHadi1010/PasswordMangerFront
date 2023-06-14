@@ -23,6 +23,21 @@ const MyPasswords = ({ setShowPasswords }) => {
     fetchData();
   }, []);
 
+  const deletePassword = async (_id) => {
+    try {
+      const res = await axios.delete(
+        `${BASE_URL}/Passwords/deletePasswords/${_id}?userId=${window.localStorage.getItem(
+          "userID"
+        )}`
+      );
+
+      // Remove the deleted password from the passwordList state
+      setPasswordList((prevList) => prevList.filter((pw) => pw._id !== _id));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="max-w-sm mx-auto min-h-screen">
       {passwordList.length === 0 && (
@@ -42,7 +57,14 @@ const MyPasswords = ({ setShowPasswords }) => {
 
       {passwordList.length !== 0 &&
         passwordList.map((val, index) => {
-          return <Password val={val} key={index} />;
+          return (
+            <Password
+              val={val}
+              key={index}
+              passwordList={passwordList}
+              setPasswordList={setPasswordList}
+            />
+          );
         })}
     </div>
   );
