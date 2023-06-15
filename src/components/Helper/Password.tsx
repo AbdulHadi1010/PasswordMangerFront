@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { HiOutlineClipboardCopy } from "react-icons/hi";
 import { BsEye } from "react-icons/bs";
 import { FiEdit } from "react-icons/fi";
@@ -15,6 +15,10 @@ const Password = ({ val, deletePassword, updatePassword }) => {
   const [edit, setEdit] = useState(false);
   const [password, setPassword] = useState(val.password);
   const newPasswordRef = useRef(val.password);
+
+  useEffect(() => {
+    decryptPassword({ password: val.password, iv: val.iv });
+  }, []);
 
   const decryptPassword = async (encryption) => {
     try {
@@ -44,7 +48,6 @@ const Password = ({ val, deletePassword, updatePassword }) => {
             <button
               className="text-white hover:-translate-y-1 duration-100 cursor-pointer bg-slate-700 rounded-md p-2"
               onClick={() => {
-                decryptPassword({ password: val.password, iv: val.iv });
                 setDecrypted(true);
                 setHide(false);
               }}
@@ -54,7 +57,6 @@ const Password = ({ val, deletePassword, updatePassword }) => {
             <button
               className="p-2 hover:-translate-y-1 duration-100 text-white cursor-pointer mx-3 bg-slate-700 rounded-md"
               onClick={() => {
-                decryptPassword({ password: val.password, iv: val.iv });
                 setDecrypted(true);
                 setHide(false);
                 setEdit(true);
