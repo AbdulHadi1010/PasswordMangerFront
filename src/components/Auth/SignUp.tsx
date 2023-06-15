@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "../Helper/BaseUrl";
-import { error, success } from "../Helper/Toast";
+import { errorToast, success } from "../Helper/Toast";
 import { ToastContainer } from "react-toastify";
 
 const SignUp = () => {
@@ -14,7 +14,7 @@ const SignUp = () => {
     event.preventDefault();
 
     if (id.trim() === "" || name.trim() === "" || password.trim() === "") {
-      error("One or more empty fields."); 
+      errorToast("One or more empty fields."); 
       return;
     }
 
