@@ -99,6 +99,7 @@ const MyPasswords = ({ setShowPasswords }) => {
               // passwordList={passwordList}
               // setPasswordList={setPasswordList}
               deletePassword={deletePassword}
+              updatePassword={updatePassword}
             />
           );
         })}
