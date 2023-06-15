@@ -23,17 +23,6 @@ const Password = ({ val, deletePassword, updatePassword }) => {
         iv: encryption.iv,
       });
       setPassword(res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const decryptNewPassword = async (encryption) => {
-    try {
-      const res = await axios.post(`${BASE_URL}/Passwords/decryptPassword`, {
-        password: encryption.password,
-        iv: encryption.iv,
-      });
       newPasswordRef.current = res.data;
     } catch (error) {
       console.log(error);
@@ -65,7 +54,7 @@ const Password = ({ val, deletePassword, updatePassword }) => {
             <button
               className="p-2 hover:-translate-y-1 duration-100 text-white cursor-pointer mx-3 bg-slate-700 rounded-md"
               onClick={() => {
-                decryptNewPassword({ password: val.password, iv: val.iv });
+                decryptPassword({ password: val.password, iv: val.iv });
                 setDecrypted(true);
                 setHide(false);
                 setEdit(true);
@@ -105,7 +94,7 @@ const Password = ({ val, deletePassword, updatePassword }) => {
             />
             <button
               className="p-2 hover:-translate-y-1 duration-100 text-white cursor-pointer mx-1.5 bg-slate-700 rounded-md"
-              onClick={() => updatePassword(newPasswordRef.current)}
+              onClick={() => updatePassword(val._id, newPasswordRef.current)}
             >
               <BsCheckLg
                 color="green"
