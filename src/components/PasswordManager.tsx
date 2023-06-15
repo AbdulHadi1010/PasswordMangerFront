@@ -4,7 +4,7 @@ import MyPasswords from "./MyPasswords";
 import AddPasswords from "./AddPasswords";
 import { BASE_URL } from "./Helper/BaseUrl";
 import { ToastContainer } from "react-toastify";
-import { error, success } from "./Helper/Toast";
+import { errorToast, success } from "./Helper/Toast";
 
 const PasswordManager = () => {
   const [password, setPassword] = useState("");
@@ -14,7 +14,7 @@ const PasswordManager = () => {
 
   const addPassword = () => {
     if (title.trim() === '' || id.trim() === '' || password.trim() === '') {
-      error('One or more empty fields.'); // Display an error message
+      errorToast('One or more empty fields.'); // Display an error message
       return;
     }
 
@@ -30,7 +30,7 @@ const PasswordManager = () => {
       setTitle("");
       success("Password added successfully.")
     } catch (err) {
-      error("Something went wrong.");
+      errorToast("Something went wrong.");
     }
   };
 

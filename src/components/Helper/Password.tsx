@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { HiOutlineClipboardCopy } from "react-icons/hi";
 import { BsEye } from "react-icons/bs";
 import { FiEdit } from "react-icons/fi";
@@ -7,7 +7,7 @@ import { MdDeleteOutline } from "react-icons/md";
 import { success } from "./Toast";
 import { BASE_URL } from "./BaseUrl";
 
-const Password = ({ val, passwordList, setPasswordList }) => {
+const Password = ({ val, deletePassword }) => {
   const [decrypted, setDecrypted] = useState(false);
   const [hide, setHide] = useState(true);
   const [edit, setEdit] = useState(false);
@@ -27,22 +27,28 @@ const Password = ({ val, passwordList, setPasswordList }) => {
     }
   };
 
-  const deletePassword = async () => {
-    try {
-      const res = await axios.delete(
-        `${BASE_URL}/Passwords/deletePassword/${
-          val._id
-        }?userId=${window.localStorage.getItem("userID")}`
-      );
-      
-      // Remove the deleted password from the passwordList state
-      setPasswordList((prevList) =>
-        prevList.filter((pw) => pw._id !== val._id)
-      );
-    } catch (error) {
-      console.log(error);
-    }
-  };
+
+  
+  // const deletePassword = async () => {
+  //   try {
+  //     const res = await axios.delete(
+  //       `${BASE_URL}/Passwords/deletePassword/${
+  //         val._id
+  //       }?userId=${window.localStorage.getItem("userID")}`
+  //     );
+
+  //     // Remove the deleted password from the passwordList state
+  //     setPasswordList((prevList) =>
+  //       prevList.filter((pw) => pw._id !== val._id)
+  //     );
+  //     success("Password deleted.");
+  //   } catch (error) {
+  //     console.error(error);
+  //     error("something went wrong.");
+  //   }
+  // };
+
+ 
 
   const copyPassword = () => {
     navigator.clipboard.writeText(password);

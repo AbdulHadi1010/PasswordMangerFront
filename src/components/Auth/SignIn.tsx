@@ -3,7 +3,7 @@ import axios from "axios";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../Helper/BaseUrl";
-import { error, success } from "../Helper/Toast";
+import { errorToast, success } from "../Helper/Toast";
 import { ToastContainer } from "react-toastify";
 
 const SignIn = () => {
@@ -17,7 +17,7 @@ const SignIn = () => {
   const handleSignIn = async (event: any) => {
     event.preventDefault();
     if (id.trim() === "" || password.trim() === "") {
-      error("One or more empty fields.");
+      errorToast("One or more empty fields.");
       return;
     }
 
@@ -33,7 +33,7 @@ const SignIn = () => {
       navigate("/passwordManager");
     } catch (error) {
       console.error(error);
-      // error("Id or password is wrong.")
+      errorToast("Id or password is wrong.")
     }
   };
 

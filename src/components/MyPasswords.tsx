@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Password from "./Helper/Password";
 import { BASE_URL } from "./Helper/BaseUrl";
+import { success, errorToast } from "./Helper/Toast";
 
 const MyPasswords = ({ setShowPasswords }) => {
   const [passwordList, setPasswordList] = useState([]);
@@ -23,6 +24,18 @@ const MyPasswords = ({ setShowPasswords }) => {
     fetchData();
   }, []);
 
+  const encryptPassword = async (data) => {
+    try {
+      const res = await axios.post(`${BASE_URL}/Passwords/encryptPassword`, {
+        password: data.password,
+        iv: data.iv,
+      });
+      return res.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const deletePassword = async (_id) => {
     try {
       const res = await axios.delete(
@@ -31,10 +44,32 @@ const MyPasswords = ({ setShowPasswords }) => {
         )}`
       );
 
-      // Remove the deleted password from the passwordList state
       setPasswordList((prevList) => prevList.filter((pw) => pw._id !== _id));
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  const updatePassword = async (_id, newPassword) => {
+    try {
+      const res = await axios.put(
+        `${BASE_URL}/Passwords/updatePassword/${_id}?userId=${window.localStorage.getItem(
+          "userID"
+        )}`,
+        {
+          params: {
+            newPassword: newPassword,
+          },
+        }
+      );
+      newPassword = encryptPassword(newPassword);
+      setPasswordList((prevList) =>
+        prevList.map((pw) => (pw._id === _id ? newPassword : pw))
+      );
+      success("Password deleted.");
+    } catch (error) {
+      console.error(error);
+      errorToast("something went wrong.");
     }
   };
 
@@ -61,8 +96,9 @@ const MyPasswords = ({ setShowPasswords }) => {
             <Password
               val={val}
               key={index}
-              passwordList={passwordList}
-              setPasswordList={setPasswordList}
+              // passwordList={passwordList}
+              // setPasswordList={setPasswordList}
+              deletePassword={deletePassword}
             />
           );
         })}
