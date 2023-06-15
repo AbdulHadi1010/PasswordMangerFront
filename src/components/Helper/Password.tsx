@@ -4,6 +4,7 @@ import { HiOutlineClipboardCopy } from "react-icons/hi";
 import { BsEye } from "react-icons/bs";
 import { FiEdit } from "react-icons/fi";
 import { MdDeleteOutline, MdOutlineDoneOutline } from "react-icons/md";
+import { RxCross1 } from "react-icons/rx";
 import { success } from "./Toast";
 import { BASE_URL } from "./BaseUrl";
 
@@ -54,7 +55,6 @@ const Password = ({ val, deletePassword, updatePassword }) => {
                 decryptPassword({ password: val.password, iv: val.iv });
                 setDecrypted(true);
                 setHide(false);
-                updatePassword();
               }}
             >
               <FiEdit size={20} />
@@ -69,8 +69,8 @@ const Password = ({ val, deletePassword, updatePassword }) => {
             </button>
           </>
         ) : !edit ? (
-          <div className="flex items-center justify-center">
-            <p className="text-white px-4 py-2 text-lg">{password}</p>
+          <div className="flex items-center px-4 py-2 justify-center">
+            <p className="text-whitetext-lg">{password}</p>
             <button onClick={copyPassword}>
               <HiOutlineClipboardCopy
                 color="white"
@@ -80,15 +80,28 @@ const Password = ({ val, deletePassword, updatePassword }) => {
             </button>
           </div>
         ) : (
-          <div className="flex items-center justify-center">
+          <div className="flex items-center px-4 py-2 justify-center">
             <input
-              className="text-white px-4 py-2 text-lg"
+              className="text-white text-lg"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
             <button onClick={updatePassword}>
               <MdOutlineDoneOutline
-                color="white"
+                color="green"
+                size={20}
+                className="cursor-pointer hover:opacity-90"
+              />
+            </button>
+            <button
+              onClick={() => {
+                setEdit(false);
+                setDecrypted(false);
+                setHide(true);
+              }}
+            >
+              <RxCross1
+                color="red"
                 size={20}
                 className="cursor-pointer hover:opacity-90"
               />
