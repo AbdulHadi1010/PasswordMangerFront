@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { HiOutlineClipboardCopy } from "react-icons/hi";
 import { BsEye } from "react-icons/bs";
 import { FiEdit } from "react-icons/fi";
@@ -14,7 +14,7 @@ const Password = ({ val, deletePassword, updatePassword }) => {
   const [hide, setHide] = useState(true);
   const [edit, setEdit] = useState(false);
   const [password, setPassword] = useState(val.password);
-  const [newPassword, setNewPassword] = useState(val.password);
+  const newPasswordRef = useRef(val.password);
 
   const decryptPassword = async (encryption) => {
     try {
@@ -88,12 +88,12 @@ const Password = ({ val, deletePassword, updatePassword }) => {
           <div className="flex items-center px-4 py-2 justify-center">
             <input
               className="text-white text-lg bg-transparent"
-              value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
+              value={newPasswordRef.current}
+              onChange={(e) => (newPasswordRef.current = e.target.value)}
             />
             <button
               className="p-2 hover:-translate-y-1 duration-100 text-white cursor-pointer mx-1.5 bg-slate-700 rounded-md"
-              onClick={() => updatePassword(newPassword)}
+              onClick={() => updatePassword(newPasswordRef.current)}
             >
               <BsCheckLg
                 color="green"
