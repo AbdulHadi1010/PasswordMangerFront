@@ -51,7 +51,6 @@ const Password = ({ val, deletePassword, updatePassword }) => {
             <button
               className="p-2 hover:-translate-y-1 duration-100 text-white cursor-pointer mx-3 bg-slate-700 rounded-md"
               onClick={() => {
-                setEdit(true);
                 decryptPassword({ password: val.password, iv: val.iv });
                 setDecrypted(true);
                 setHide(false);
