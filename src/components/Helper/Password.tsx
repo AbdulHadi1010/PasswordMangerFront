@@ -51,9 +51,11 @@ const Password = ({ val, deletePassword, updatePassword }) => {
             <button
               className="p-2 hover:-translate-y-1 duration-100 text-white cursor-pointer mx-3 bg-slate-700 rounded-md"
               onClick={() => {
-                decryptPassword({ password: val.password, iv: val.iv });
-                setDecrypted(true);
-                setHide(false);
+                setEdit(true);
+                // decryptPassword({ password: val.password, iv: val.iv });
+                // setDecrypted(true);
+                // setHide(false);
+                console.log('edit')
               }}
             >
               <FiEdit size={20} />
@@ -61,7 +63,8 @@ const Password = ({ val, deletePassword, updatePassword }) => {
             <button
               className="p-2 hover:-translate-y-1 duration-100 text-white cursor-pointer bg-slate-700 rounded-md"
               onClick={() => {
-                deletePassword();
+                // deletePassword();
+                console.log('delete')
               }}
             >
               <MdDeleteOutline size={20} />
