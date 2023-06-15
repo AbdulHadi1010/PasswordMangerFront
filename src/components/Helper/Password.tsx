@@ -13,6 +13,7 @@ const Password = ({ val, deletePassword, updatePassword }) => {
   const [hide, setHide] = useState(true);
   const [edit, setEdit] = useState(false);
   const [password, setPassword] = useState(val.password);
+  const [newPassword, setNewPassword] = useState(val.password);
 
   const decryptPassword = async (encryption) => {
     try {
@@ -70,8 +71,11 @@ const Password = ({ val, deletePassword, updatePassword }) => {
           </>
         ) : !edit ? (
           <div className="flex items-center px-4 py-2 justify-center">
-            <p className="text-whitetext-lg">{password}</p>
-            <button onClick={copyPassword}>
+            <p className="text-white text-lg">{password}</p>
+            <button
+              className="p-2 hover:-translate-y-1 duration-100 text-white cursor-pointer mx-3 bg-slate-700 rounded-md"
+              onClick={copyPassword}
+            >
               <HiOutlineClipboardCopy
                 color="white"
                 size={20}
@@ -84,9 +88,13 @@ const Password = ({ val, deletePassword, updatePassword }) => {
             <input
               className="text-white text-lg"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => setNewPassword(e.target.value)}
             />
-            <button onClick={updatePassword}>
+
+            <button
+              className="p-2 hover:-translate-y-1 duration-100 text-white cursor-pointer mx-3 bg-slate-700 rounded-md"
+              onClick={() => updatePassword(newPassword)}
+            >
               <MdOutlineDoneOutline
                 color="green"
                 size={20}
@@ -94,6 +102,7 @@ const Password = ({ val, deletePassword, updatePassword }) => {
               />
             </button>
             <button
+              className="p-2 hover:-translate-y-1 duration-100 text-white cursor-pointer mx-3 bg-slate-700 rounded-md"
               onClick={() => {
                 setEdit(false);
                 setDecrypted(false);
