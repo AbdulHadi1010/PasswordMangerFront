@@ -28,6 +28,18 @@ const Password = ({ val, deletePassword, updatePassword }) => {
     }
   };
 
+  const decryptNewPassword = async (encryption) => {
+    try {
+      const res = await axios.post(`${BASE_URL}/Passwords/decryptPassword`, {
+        password: encryption.password,
+        iv: encryption.iv,
+      });
+      newPasswordRef.current = res.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const copyPassword = () => {
     navigator.clipboard.writeText(password);
     success("Password copied to clipboard.");
@@ -53,10 +65,10 @@ const Password = ({ val, deletePassword, updatePassword }) => {
             <button
               className="p-2 hover:-translate-y-1 duration-100 text-white cursor-pointer mx-3 bg-slate-700 rounded-md"
               onClick={() => {
-                setEdit(true);
                 decryptPassword({ password: val.password, iv: val.iv });
                 setDecrypted(true);
                 setHide(false);
+                setEdit(true);
               }}
             >
               <FiEdit size={20} />
