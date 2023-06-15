@@ -14,7 +14,7 @@ const Password = ({ val, deletePassword, updatePassword }) => {
   const [hide, setHide] = useState(true);
   const [edit, setEdit] = useState(false);
   const [password, setPassword] = useState(val.password);
-  const newPasswordRef = useRef(val.password);
+  let newPasswordRef = useRef(val.password);
 
   useEffect(() => {
     decryptPassword({ password: val.password, iv: val.iv });
