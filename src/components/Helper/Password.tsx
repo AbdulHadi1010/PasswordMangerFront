@@ -101,32 +101,36 @@ const Password = ({ val, deletePassword, updatePassword }) => {
             </div>
           </div>
         ) : (
-          <div className="flex items-center px-4 py-2 justify-center">
-            <input
-              className="text-white text-lg bg-transparent border rounded-md p-2 border-green-500"
-              value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
-            />
-            <button
-              className="p-2 hover:-translate-y-1 duration-100 text-white cursor-pointer mx-1.5 bg-slate-700 rounded-md"
-              onClick={handleUpdatePassword}
-            >
-              <BsCheckLg
-                color="green"
-                size={20}
-                className="cursor-pointer hover:opacity-90"
+          <div>
+            <div className="flex items-center px-4 py-2 justify-center">
+              <input
+                className="text-white text-lg bg-transparent border rounded-md p-2 border-green-500"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
               />
-            </button>
-            <button
-              className="p-2 hover:-translate-y-1 duration-100 text-white cursor-pointer ms-1.5 bg-slate-700 rounded-md"
-              onClick={handleCancelUpdatePassword}
-            >
-              <RxCross1
-                color="red"
-                size={20}
-                className="cursor-pointer hover:opacity-90"
-              />
-            </button>
+            </div>
+            <div className="flex flex-col gap-2 sm:inline-block">
+              <button
+                className="p-2 w-full sm-w-auto hover:bg-slate-800 text-white cursor-pointer mx-1.5 bg-slate-700 rounded-md"
+                onClick={handleUpdatePassword}
+              >
+                <BsCheckLg
+                  color="green"
+                  size={20}
+                  className="cursor-pointer hover:opacity-90"
+                />
+              </button>
+              <button
+                className="p-2 w-full sm-w-auto hover:bg-slate-800 text-white cursor-pointer ms-1.5 bg-slate-700 rounded-md"
+                onClick={handleCancelUpdatePassword}
+              >
+                <RxCross1
+                  color="red"
+                  size={20}
+                  className="cursor-pointer hover:opacity-90"
+                />
+              </button>
+            </div>
           </div>
         )}
       </div>
