@@ -38,7 +38,7 @@ const MyPasswords = ({ setShowPasswords }) => {
   const deletePassword = async (_id) => {
     try {
       const res = await axios.delete(
-        `${BASE_URL}/Passwords/deletePasswords/${_id}?userId=${window.localStorage.getItem(
+        `${BASE_URL}/Passwords/deletePassword/${_id}?userId=${window.localStorage.getItem(
           "userID"
         )}`
       );
