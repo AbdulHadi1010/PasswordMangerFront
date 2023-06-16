@@ -24,11 +24,10 @@ const MyPasswords = ({ setShowPasswords }) => {
     fetchData();
   }, []);
 
-  const encryptPassword = async (data) => {
+  const encryptPassword = async (password) => {
     try {
       const res = await axios.post(`${BASE_URL}/Passwords/encryptPassword`, {
-        password: data.password,
-        iv: data.iv,
+        password,
       });
       return res.data;
     } catch (error) {
