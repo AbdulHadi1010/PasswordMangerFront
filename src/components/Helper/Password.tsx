@@ -104,7 +104,7 @@ const Password = ({ val, deletePassword, updatePassword }) => {
           <div>
             <div className="flex flex-col gap-2 sm:flex-row items-center p-2 justify-center">
               <input
-                className="text-white text-lg bg-transparent border rounded-md p-2 border-green-500"
+                className="text-white text-lg bg-transparent outline-none border rounded-md p-2 border-green-500"
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
                 autoFocus
@@ -122,7 +122,7 @@ const Password = ({ val, deletePassword, updatePassword }) => {
                   />
                 </button>
                 <button
-                  className="flex flex-1 align-center justify-centerp-2 sm:w-min hover:bg-slate-800 text-white cursor-pointer bg-slate-700 rounded-md"
+                  className="flex flex-1 align-center justify-center p-2 sm:w-min hover:bg-slate-800 text-white cursor-pointer bg-slate-700 rounded-md"
                   onClick={handleCancelUpdatePassword}
                 >
                   <RxCross1
