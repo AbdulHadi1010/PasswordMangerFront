@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { HiOutlineClipboardCopy } from "react-icons/hi";
 import { BsEye } from "react-icons/bs";
 import { FiEdit } from "react-icons/fi";
@@ -10,11 +10,10 @@ import { success } from "./Toast";
 import { BASE_URL } from "./BaseUrl";
 
 const Password = ({ val, deletePassword, updatePassword }) => {
-  const [decrypted, setDecrypted] = useState(false);
   const [hide, setHide] = useState(true);
   const [edit, setEdit] = useState(false);
   const [password, setPassword] = useState(val.password);
-  let newPasswordRef = useRef(val.password);
+  let [newPassword, setNewPassword] = useState(val.password);
 
   useEffect(() => {
     decryptPassword({ password: val.password, iv: val.iv });
@@ -27,7 +26,7 @@ const Password = ({ val, deletePassword, updatePassword }) => {
         iv: encryption.iv,
       });
       setPassword(res.data);
-      newPasswordRef.current = res.data;
+      setNewPassword(res.data);
     } catch (error) {
       console.log(error);
     }
@@ -48,7 +47,6 @@ const Password = ({ val, deletePassword, updatePassword }) => {
             <button
               className="text-white hover:-translate-y-1 duration-100 cursor-pointer bg-slate-700 rounded-md p-2"
               onClick={() => {
-                setDecrypted(true);
                 setHide(false);
               }}
             >
@@ -57,7 +55,6 @@ const Password = ({ val, deletePassword, updatePassword }) => {
             <button
               className="p-2 hover:-translate-y-1 duration-100 text-white cursor-pointer mx-3 bg-slate-700 rounded-md"
               onClick={() => {
-                setDecrypted(true);
                 setHide(false);
                 setEdit(true);
               }}
@@ -91,12 +88,12 @@ const Password = ({ val, deletePassword, updatePassword }) => {
           <div className="flex items-center px-4 py-2 justify-center">
             <input
               className="text-white text-lg bg-transparent"
-              value={newPasswordRef.current}
-              onChange={(e) => (newPasswordRef.current = e.target.value)}
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
             />
             <button
               className="p-2 hover:-translate-y-1 duration-100 text-white cursor-pointer mx-1.5 bg-slate-700 rounded-md"
-              onClick={() => updatePassword(val._id, newPasswordRef.current)}
+              onClick={() => updatePassword(val._id, newPassword)}
             >
               <BsCheckLg
                 color="green"
@@ -108,8 +105,8 @@ const Password = ({ val, deletePassword, updatePassword }) => {
               className="p-2 hover:-translate-y-1 duration-100 text-white cursor-pointer mx-1.5 bg-slate-700 rounded-md"
               onClick={() => {
                 setEdit(false);
-                setDecrypted(false);
                 setHide(true);
+                setNewPassword(password);
               }}
             >
               <RxCross1
