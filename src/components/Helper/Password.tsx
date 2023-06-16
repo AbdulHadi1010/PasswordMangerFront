@@ -15,10 +15,6 @@ const Password = ({ val, deletePassword, updatePassword }) => {
   const [password, setPassword] = useState<string>(val.password);
   let [newPassword, setNewPassword] = useState<string>(val.password);
 
-  useEffect(() => {
-    decryptPassword({ password: val.password, iv: val.iv });
-  }, []);
-
   const decryptPassword = async (encryption) => {
     try {
       const res = await axios.post(`${BASE_URL}/Passwords/decryptPassword`, {
@@ -64,6 +60,7 @@ const Password = ({ val, deletePassword, updatePassword }) => {
             <button
               className="text-white hover:-translate-y-1 duration-100 cursor-pointer bg-slate-700 rounded-md p-2"
               onClick={() => {
+                decryptPassword({ password: val.password, iv: val.iv });
                 setHide(false);
               }}
             >
@@ -72,6 +69,7 @@ const Password = ({ val, deletePassword, updatePassword }) => {
             <button
               className="p-2 hover:-translate-y-1 duration-100 text-white cursor-pointer mx-3 bg-slate-700 rounded-md"
               onClick={() => {
+                decryptPassword({ password: val.password, iv: val.iv });
                 setHide(false);
                 setEdit(true);
               }}
@@ -90,11 +88,8 @@ const Password = ({ val, deletePassword, updatePassword }) => {
         ) : !edit ? (
           <div className="flex items-center px-4 py-2 justify-center">
             <div className="flex justify-between">
-              <p className="text-white text-lg">{password}</p>
-              <button
-                className="p-2 hover:-translate-y-1 duration-100 text-white cursor-pointer bg-slate-700 rounded-md"
-                onClick={copyPassword}
-              >
+              <p className="text-white text-lg pr-2">{password}</p>
+              <button onClick={copyPassword}>
                 <HiOutlineClipboardCopy
                   color="white"
                   size={20}
