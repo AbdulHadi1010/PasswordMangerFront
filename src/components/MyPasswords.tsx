@@ -53,12 +53,11 @@ const MyPasswords = ({ setShowPasswords }) => {
   const updatePassword = async (_id, newPassword) => {
     try {
       const res = await axios.put(
-        `${BASE_URL}/Passwords/updatePassword/${_id}?userId=${window.localStorage.getItem(
-          "userID"
-        )}`,
+        `${BASE_URL}/Passwords/updatePassword/${_id}}`,
         {
           params: {
             newPassword: newPassword,
+            userId: window.localStorage.getItem("userID"),
           },
         }
       );

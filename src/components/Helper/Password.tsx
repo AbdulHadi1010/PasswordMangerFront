@@ -12,8 +12,8 @@ import { BASE_URL } from "./BaseUrl";
 const Password = ({ val, deletePassword, updatePassword }) => {
   const [hide, setHide] = useState(true);
   const [edit, setEdit] = useState(false);
-  const [password, setPassword] = useState(val.password);
-  let [newPassword, setNewPassword] = useState(val.password);
+  const [password, setPassword] = useState<string>(val.password);
+  let [newPassword, setNewPassword] = useState<string>(val.password);
 
   useEffect(() => {
     decryptPassword({ password: val.password, iv: val.iv });
@@ -102,7 +102,7 @@ const Password = ({ val, deletePassword, updatePassword }) => {
               />
             </button>
             <button
-              className="p-2 hover:-translate-y-1 duration-100 text-white cursor-pointer mx-1.5 bg-slate-700 rounded-md"
+              className="p-2 hover:-translate-y-1 duration-100 text-white cursor-pointer ms-1.5 bg-slate-700 rounded-md"
               onClick={() => {
                 setEdit(false);
                 setHide(true);
