@@ -46,7 +46,7 @@ const MyPasswords = ({ setShowPasswords }) => {
       success("Password successfully deleted.");
     } catch (error) {
       console.log(error);
-      errorToast("Something went wrong.")
+      errorToast("Something went wrong.");
     }
   };
 
@@ -61,7 +61,7 @@ const MyPasswords = ({ setShowPasswords }) => {
       );
       newPassword = encryptPassword(newPassword);
       setPasswordList((prevList) =>
-        prevList.map((pw) => (pw._id === _id ? newPassword : pw))
+        prevList.map((pw) => (pw._id === _id ? { ...pw, newPassword } : pw))
       );
       success("Password successfully updated.");
     } catch (error) {
