@@ -107,11 +107,12 @@ const Password = ({ val, deletePassword, updatePassword }) => {
                 className="text-white text-lg bg-transparent border rounded-md p-2 border-green-500"
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
+                autoFocus
               />
 
-              <div className="flex gap-1 sm:inline-flex px-2">
+              <div className="flex w-full gap-2 sm:inline-flex px-2">
                 <button
-                  className="flex flex-1 align-center justify-center gap-1 p-2 w-1/2 sm:w-min hover:bg-slate-800 text-white cursor-pointer mx-1.5 bg-slate-700 rounded-md"
+                  className="flex flex-1 align-center justify-center p-2 sm:w-min hover:bg-slate-800 text-white cursor-pointer bg-slate-700 rounded-md"
                   onClick={handleUpdatePassword}
                 >
                   <BsCheckLg
@@ -121,7 +122,7 @@ const Password = ({ val, deletePassword, updatePassword }) => {
                   />
                 </button>
                 <button
-                  className="flex flex-1 align-center justify-center gap-1 p-2 w-1/2 sm:w-min hover:bg-slate-800 text-white cursor-pointer ms-1.5 bg-slate-700 rounded-md"
+                  className="flex flex-1 align-center justify-centerp-2 sm:w-min hover:bg-slate-800 text-white cursor-pointer bg-slate-700 rounded-md"
                   onClick={handleCancelUpdatePassword}
                 >
                   <RxCross1
