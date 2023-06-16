@@ -37,6 +37,23 @@ const Password = ({ val, deletePassword, updatePassword }) => {
     success("Password copied to clipboard.");
   };
 
+  const handleUpdatePassword = () => {
+    try {
+      updatePassword(val._id, newPassword);
+      setEdit(false);
+      setHide(true);
+      setPassword(newPassword);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleCancelUpdatePassword = () => {
+    setEdit(false);
+    setHide(true);
+    setNewPassword(password);
+  };
+
   return (
     <div className="border my-4 px-4 py-2 rounded-lg bg-slate-800 ">
       <h3 className="text-xl font-bold">{val.title}</h3>
@@ -75,7 +92,7 @@ const Password = ({ val, deletePassword, updatePassword }) => {
             <div className="flex justify-between">
               <p className="text-white text-lg">{password}</p>
               <button
-                className="p-2 hover:-translate-y-1 duration-100 text-white cursor-pointer mx-3 bg-slate-700 rounded-md"
+                className="p-2 hover:-translate-y-1 duration-100 text-white cursor-pointer bg-slate-700 rounded-md"
                 onClick={copyPassword}
               >
                 <HiOutlineClipboardCopy
@@ -89,17 +106,13 @@ const Password = ({ val, deletePassword, updatePassword }) => {
         ) : (
           <div className="flex items-center px-4 py-2 justify-center">
             <input
-              className="text-white text-lg bg-transparent border border-green-400"
+              className="text-white text-lg bg-transparent border rounded-md p-2 border-green-500"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
             />
             <button
               className="p-2 hover:-translate-y-1 duration-100 text-white cursor-pointer mx-1.5 bg-slate-700 rounded-md"
-              onClick={() => {
-                updatePassword(val._id, newPassword);
-                setEdit(false);
-                setHide(true);
-              }}
+              onClick={handleUpdatePassword}
             >
               <BsCheckLg
                 color="green"
@@ -109,11 +122,7 @@ const Password = ({ val, deletePassword, updatePassword }) => {
             </button>
             <button
               className="p-2 hover:-translate-y-1 duration-100 text-white cursor-pointer ms-1.5 bg-slate-700 rounded-md"
-              onClick={() => {
-                setEdit(false);
-                setHide(true);
-                setNewPassword(password);
-              }}
+              onClick={handleCancelUpdatePassword}
             >
               <RxCross1
                 color="red"
