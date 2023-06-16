@@ -108,30 +108,29 @@ const Password = ({ val, deletePassword, updatePassword }) => {
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
               />
-            </div>
-            <div className="flex gap-1 sm:inline px-2">
-              <button
-                className="flex align-center justify-center gap-1 p-2 w-1/2 sm:w-min hover:bg-slate-800 text-white cursor-pointer mx-1.5 bg-slate-700 rounded-md"
-                onClick={handleUpdatePassword}
-              >
-                <BsCheckLg
-                  color="green"
-                  size={20}
-                  className="cursor-pointer hover:opacity-90"
-                />
-                <span className="sm:hidden -mx-1">Update</span>
-              </button>
-              <button
-                className="flex align-center justify-center gap-1 p-2 w-1/2 sm:w-min hover:bg-slate-800 text-white cursor-pointer ms-1.5 bg-slate-700 rounded-md"
-                onClick={handleCancelUpdatePassword}
-              >
-                <RxCross1
-                  color="red"
-                  size={20}
-                  className="cursor-pointer hover:opacity-90"
-                />
-                <span className="sm:hidden -mx-1">Delete</span>
-              </button>
+
+              <div className="flex gap-1 sm:inline-flex px-2">
+                <button
+                  className="flex align-center justify-center gap-1 p-2 w-1/2 sm:w-min hover:bg-slate-800 text-white cursor-pointer mx-1.5 bg-slate-700 rounded-md"
+                  onClick={handleUpdatePassword}
+                >
+                  <BsCheckLg
+                    color="green"
+                    size={20}
+                    className="cursor-pointer hover:opacity-90"
+                  />
+                </button>
+                <button
+                  className="flex align-center justify-center gap-1 p-2 w-1/2 sm:w-min hover:bg-slate-800 text-white cursor-pointer ms-1.5 bg-slate-700 rounded-md"
+                  onClick={handleCancelUpdatePassword}
+                >
+                  <RxCross1
+                    color="red"
+                    size={20}
+                    className="cursor-pointer hover:opacity-90"
+                  />
+                </button>
+              </div>
             </div>
           </div>
         )}
