@@ -73,7 +73,7 @@ const MyPasswords = ({ setShowPasswords }) => {
   return (
     <div className="max-w-sm mx-auto min-h-screen">
       {passwordList.length === 0 && (
-        <h2 className="text-4xl text-center">
+        <h2 className="text-4xl text-center mb-4">
           You have not saved any passwords yet.
         </h2>
       )}

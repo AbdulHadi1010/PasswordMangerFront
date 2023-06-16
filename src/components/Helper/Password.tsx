@@ -104,7 +104,7 @@ const Password = ({ val, deletePassword, updatePassword }) => {
           <div>
             <div className="flex flex-col gap-2 sm:flex-row items-center p-2 justify-center">
               <input
-                className="text-white text-lg bg-transparent outline-none border rounded-md p-2 border-green-500"
+                className="text-white text-lg bg-transparent outline-none border rounded-md p-2 border-green-500 w-[230px]"
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
                 autoFocus
