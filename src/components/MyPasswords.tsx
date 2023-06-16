@@ -42,10 +42,11 @@ const MyPasswords = ({ setShowPasswords }) => {
           "userID"
         )}`
       );
-
       setPasswordList((prevList) => prevList.filter((pw) => pw._id !== _id));
+      success("Password successfully deleted.");
     } catch (error) {
       console.log(error);
+      errorToast("Something went wrong.")
     }
   };
 

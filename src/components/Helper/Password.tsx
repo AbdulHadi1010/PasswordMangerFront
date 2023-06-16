@@ -79,7 +79,7 @@ const Password = ({ val, deletePassword, updatePassword }) => {
             <button
               className="p-2 hover:-translate-y-1 duration-100 text-white cursor-pointer bg-slate-700 rounded-md"
               onClick={() => {
-                deletePassword();
+                deletePassword(val._id);
               }}
             >
               <MdDeleteOutline size={20} />
