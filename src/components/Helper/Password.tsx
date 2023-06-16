@@ -25,13 +25,6 @@ const Password = ({ val, deletePassword, updatePassword }) => {
         password: encryption.password,
         iv: encryption.iv,
       });
-
-
-      console.log("decrypt")
-      console.log(res.data)
-      console.log(typeof(res.data))
-
-
       setPassword(res.data);
       setNewPassword(res.data);
     } catch (error) {
@@ -79,28 +72,34 @@ const Password = ({ val, deletePassword, updatePassword }) => {
           </>
         ) : !edit ? (
           <div className="flex items-center px-4 py-2 justify-center">
-            <p className="text-white text-lg">{password}</p>
-            <button
-              className="p-2 hover:-translate-y-1 duration-100 text-white cursor-pointer mx-3 bg-slate-700 rounded-md"
-              onClick={copyPassword}
-            >
-              <HiOutlineClipboardCopy
-                color="white"
-                size={20}
-                className="cursor-pointer hover:scale-105"
-              />
-            </button>
+            <div className="flex justify-between">
+              <p className="text-white text-lg">{password}</p>
+              <button
+                className="p-2 hover:-translate-y-1 duration-100 text-white cursor-pointer mx-3 bg-slate-700 rounded-md"
+                onClick={copyPassword}
+              >
+                <HiOutlineClipboardCopy
+                  color="white"
+                  size={20}
+                  className="cursor-pointer hover:scale-105"
+                />
+              </button>
+            </div>
           </div>
         ) : (
           <div className="flex items-center px-4 py-2 justify-center">
             <input
-              className="text-white text-lg bg-transparent"
+              className="text-white text-lg bg-transparent border border-green-400"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
             />
             <button
               className="p-2 hover:-translate-y-1 duration-100 text-white cursor-pointer mx-1.5 bg-slate-700 rounded-md"
-              onClick={() => updatePassword(val._id, newPassword)}
+              onClick={() => {
+                updatePassword(val._id, newPassword);
+                setEdit(false);
+                setHide(true);
+              }}
             >
               <BsCheckLg
                 color="green"

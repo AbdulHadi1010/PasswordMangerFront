@@ -62,7 +62,7 @@ const MyPasswords = ({ setShowPasswords }) => {
       setPasswordList((prevList) =>
         prevList.map((pw) => (pw._id === _id ? newPassword : pw))
       );
-      success("Password deleted.");
+      success("Password successfully updated.");
     } catch (error) {
       console.error(error);
       errorToast("something went wrong.");
