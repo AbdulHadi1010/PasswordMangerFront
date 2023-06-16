@@ -15,6 +15,10 @@ const Password = ({ val, deletePassword, updatePassword }) => {
   const [password, setPassword] = useState<string>(val.password);
   let [newPassword, setNewPassword] = useState<string>(val.password);
 
+  useEffect(() => {
+    decryptPassword({ password: val.password, iv: val.iv });
+  }, []);
+
   const decryptPassword = async (encryption) => {
     try {
       const res = await axios.post(`${BASE_URL}/Passwords/decryptPassword`, {
@@ -37,7 +41,7 @@ const Password = ({ val, deletePassword, updatePassword }) => {
     try {
       updatePassword(val._id, newPassword);
       setEdit(false);
-      setHide(false);
+      setHide(true);
       setPassword(newPassword);
     } catch (error) {
       console.log(error);
@@ -60,7 +64,6 @@ const Password = ({ val, deletePassword, updatePassword }) => {
             <button
               className="text-white hover:-translate-y-1 duration-100 cursor-pointer bg-slate-700 rounded-md p-2"
               onClick={() => {
-                decryptPassword({ password: val.password, iv: val.iv });
                 setHide(false);
               }}
             >
@@ -69,7 +72,6 @@ const Password = ({ val, deletePassword, updatePassword }) => {
             <button
               className="p-2 hover:-translate-y-1 duration-100 text-white cursor-pointer mx-3 bg-slate-700 rounded-md"
               onClick={() => {
-                decryptPassword({ password: val.password, iv: val.iv });
                 setHide(false);
                 setEdit(true);
               }}
