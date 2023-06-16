@@ -102,7 +102,7 @@ const Password = ({ val, deletePassword, updatePassword }) => {
           </div>
         ) : (
           <div>
-            <div className="flex items-center px-4 py-2 justify-center">
+            <div className="flex flex-col sm:flex-row items-center px-4 py-2 justify-center">
               <input
                 className="text-white text-lg bg-transparent border rounded-md p-2 border-green-500"
                 value={newPassword}
