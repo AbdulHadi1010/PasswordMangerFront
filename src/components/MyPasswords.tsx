@@ -53,7 +53,7 @@ const MyPasswords = ({ setShowPasswords }) => {
   const updatePassword = async (_id, newPassword) => {
     try {
       const res = await axios.put(
-        `${BASE_URL}/Passwords/updatePassword/${_id}}`,
+        `${BASE_URL}/Passwords/updatePassword/${_id}`,
         {
           params: {
             newPassword: newPassword,

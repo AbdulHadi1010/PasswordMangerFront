@@ -25,6 +25,13 @@ const Password = ({ val, deletePassword, updatePassword }) => {
         password: encryption.password,
         iv: encryption.iv,
       });
+
+
+      console.log("decrypt")
+      console.log(res.data)
+      console.log(typeof(res.data))
+
+
       setPassword(res.data);
       setNewPassword(res.data);
     } catch (error) {
