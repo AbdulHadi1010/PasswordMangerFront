@@ -37,7 +37,7 @@ const Password = ({ val, deletePassword, updatePassword }) => {
     try {
       updatePassword(val._id, newPassword);
       setEdit(false);
-      setHide(true);
+      setHide(false);
       setPassword(newPassword);
     } catch (error) {
       console.log(error);
