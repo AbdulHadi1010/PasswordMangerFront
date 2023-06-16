@@ -54,10 +54,8 @@ const MyPasswords = ({ setShowPasswords }) => {
       const res = await axios.put(
         `${BASE_URL}/Passwords/updatePassword/${_id}`,
         {
-          params: {
-            newPassword: newPassword,
-            userId: window.localStorage.getItem("userID"),
-          },
+          newPassword: newPassword,
+          userId: window.localStorage.getItem("userID"),
         }
       );
       newPassword = encryptPassword(newPassword);
